@@ -28,4 +28,21 @@
                Node API
 
 
+2. Node.js를 어떻게 공부할 것인가 ?
+  1) Node의 구조를 정확히 이해하고 실행방식을 기억한다.
+  2) Node에서 제공하는 API를 잘 사용할 줄 알아야 한다.
+     API는 자바스크립트 문법으로 작성되었으므로, 문법을 정확히 익히도록 한다.
+  3) 개발을 편리하게 지원해주는 프레임워크에 대해 익힌다.
+     Node.js --> Express, Rust
+     Web API(브라우저) --> React, Vue
 
+
+3. Node.js 특징 4가지
+  1) JavaScript Runtime
+    - V8 엔진 탑재 -> ES6, Open API, Node API ...
+  2) Single Thread
+    - Process vs Thread
+    - 노드는 single thread 기반이라 call stack도 하나밖에 없다.
+  3) Non-Blocking(비동기적) IO
+    - 노드가 single thread라 동기적으로 실행하면 너무 비효율적임 그래서 비동기적으로 실행함
+  4) Event - Driven
