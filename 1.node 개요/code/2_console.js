@@ -18,3 +18,26 @@ console.log(student);
 console.table(student);
 console.dir(student, { showHidden: true, color: false, depth: 0 });
 //{ name: '홍길동', age: 20, color: [Object] }
+
+//time
+console.time('for loop');
+for (let i = 0; i < 5; i++) {
+  i++;
+}
+console.timeEnd('for loop'); // 똑같은 label 주기
+
+//trace
+function f1() {
+  f2();
+}
+
+function f2() {
+  f3();
+}
+
+function f3() {
+  console.log('function 3');
+  console.trace();
+}
+
+f1();
