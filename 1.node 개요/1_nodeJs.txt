@@ -52,3 +52,7 @@
   E : Eval
   P : Print
   L : Loop
+
+5. console log에 대한 API 검색 및 활용 : 2_console.js 
+
+6. this 정리 - 3_this.js
