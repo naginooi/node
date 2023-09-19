@@ -1,43 +1,39 @@
-console.log('logging...');
+const string = 'abc';
+const number = 1;
+const boolean = true;
+const obj = {
+  outside: {
+    inside: {
+      key: 'value',
+    },
+  },
+};
 
-//log level
-console.log('log'); // 개발
-console.info('info'); // 정보, 사용법
-console.warn('warn'); // 경고
-console.error('error'); // 에러
+console.time('전체 시간');
+console.log('평범한 로그입니다 쉼표로 구분해 여러 값을 찍을 수 있습니다');
+console.log(string, number, boolean);
+console.error('에러 메세지는 console.error에 담아주세요');
 
-// console.clear(); // 로그 삭제
+console.table([
+  { name: '이니', birth: 2001 },
+  { name: '미니', birth: 2000 },
+]);
 
-//assert
-console.assert(2 === 2, '동일함'); //조건식이 true이면 로그 출력 x
-console.assert(2 === 3, '동일하지않음'); //false 인 경우에만 출력 o
+console.dir(obj, { colors: false, depth: 2 });
+console.dir(obj, { colors: true, depth: 1 });
 
-//print object
-const student = { name: '홍길동', age: 20, color: { default: 'red' } };
-console.log(student);
-console.table(student);
-console.dir(student, { showHidden: true, color: false, depth: 0 });
-//{ name: '홍길동', age: 20, color: [Object] }
+console.time('시간 측정');
 
-//time
-console.time('for loop');
-for (let i = 0; i < 5; i++) {
-  i++;
-}
-console.timeEnd('for loop'); // 똑같은 label 주기
+for (let i = 0; i < 100000; i++) {}
+console.timeEnd('시간 측정');
 
-//trace
-function f1() {
-  f2();
-}
-
-function f2() {
-  f3();
+function b() {
+  console.trace('에러 위치 추적');
 }
 
-function f3() {
-  console.log('function 3');
-  console.trace();
+function a() {
+  b();
 }
+a();
 
-f1();
+console.timeEnd('전체 시간');
