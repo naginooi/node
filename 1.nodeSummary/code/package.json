@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "type": "",
-  "main": "5_eCounter.js",
+  "main": "5_eModule.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

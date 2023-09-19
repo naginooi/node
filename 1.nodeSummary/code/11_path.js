@@ -12,9 +12,6 @@ console.log(path.basename(__dirname));
 //dirname
 console.log(path.dirname(__dirname));
 
-//extension
-console.log(path.extension(__filename));
-
 //parse
 const parsed = path.parse(__filename);
 console.log(parsed);
