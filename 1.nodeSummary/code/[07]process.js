@@ -32,3 +32,18 @@ Promise.resolve().then(() => {
 // promise --> resolve된 promise도 다른 콜백들보다 우선시 됨
 // timeout
 // immediate
+
+let i = 1;
+setInterval(() => {
+  if (i === 5) {
+    console.log('종료!');
+    process.exit();
+  }
+  console.log(i);
+  i++;
+}, 1000);
+// 1
+// 2
+// 3
+// 4
+// 종료!
