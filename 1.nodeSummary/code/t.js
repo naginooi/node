@@ -1,0 +1,19 @@
+/* 단일 객체 내보내기 */
+
+const exchangeRate = 0.91;
+
+//안 내보냄
+function roundTwoDecimals(amount) {
+  return Math.round(amount * 100) / 100;
+}
+
+//내보내기
+const obj = {};
+obj.canadianToUs = function (canadian) {
+  return roundTwoDecimals(canadian * exchangeRate);
+};
+obj.usToCanadian = function (american) {
+  return roundTwoDecimals(american / exchangeRate);
+};
+module.exports = obj;
+module;
