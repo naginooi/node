@@ -1,5 +1,3 @@
-/* 단일 객체 내보내기 */
-
 const exchangeRate = 0.91;
 
 //안 내보냄
