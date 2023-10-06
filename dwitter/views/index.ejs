@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dwitter</title>
+  </head>
+  <body>
+    <%- include ('header.ejs') %>
+
+    <form name="contentForm" action="#" method="post" style="width: 70%">
+      <input name="id" placeholder="id" />
+      <input name="name" placeholder="name" />
+      <input name="content" placeholder="무슨일이 일어나고 있나요?" />
+      <button type="submit">Post</button>
+    </form>
+    <% renderList.forEach(element => { %>
+    <div class="div" style="border: 1px solid gray; margin-top: 30px">
+      <%= element.pid %>
+      <span style="float: right; cursor: pointer" onclick="remove(<%= element.pid %>)">❌</span>
+      <span style="float: right; cursor: pointer" onclick="updateToggle(<%= element.pid %>)">📝&nbsp;&nbsp;</span>
+      <img
+        style="clear: both; width: 50px"
+        src="https://i.pinimg.com/564x/e4/ed/e0/e4ede02de9af2989137498613db1a4ed.jpg"
+        alt=""
+      />
+      <span><%= element.name %></span>
+      <span class="id"><a href="/dwitter/<%= element.id %>">@<%= element.id %></a></span>
+      <span><%= element.date %></span>
+      <div><%= element.content %></div>
+      <br />
+      <div id="updateForm_<%= element.pid %>" style="display: none">
+        <input id="content_<%= element.pid%>" style="width: 80%" />
+        <button type="button" onclick="update(<%= element.pid%>)">Update</button>
+      </div>
+    </div>
+    <% }) %>
+  </body>
+  <script>
+    function remove(pid) {
+      fetch('/dwitter', {
+        method: 'delete',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ pid: pid }),
+      })
+        .then((result) => {
+          if (result.status === 204) {
+            alert('삭제 완룡');
+            window.location.reload();
+          }
+        })
+        .catch();
+    }
+    function update(pid) {
+      const updateText = document.querySelector(`#content_${pid}`).value;
+      fetch('/dwitter', {
+        method: 'put',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ pid: pid, content: updateText }),
+      })
+        .then((result) => {
+          if (result.status === 204) {
+            alert('업데이트 완료');
+            window.location.reload();
+          }
+        })
+        .catch();
+    }
+    function updateToggle(pid) {
+      const updateForm = document.querySelector(`#updateForm_${pid}`);
+      const contentText = document.querySelector(`#content_${pid}`);
+      const display = updateForm.style.display;
+      if (display == 'none') {
+        updateForm.style.display = 'block';
+        contentText.focus();
+      } else {
+        updateForm.style.display = 'none';
+        contentText.value = '';
+      }
+    }
+  </script>
+</html>

@@ -1,0 +1,7 @@
+1. GET : /dwitter - 트윗한 내용 목록 나열
+2. POST : /dwitter - 트윗 생성
+3. GET : /dwitter/:userid - 내 트윗 보기
+4. PUT : /dwitter/:userid - 내 트윗 수정하기
+5. DELETE : /dwitter/:userid - 내 트윗 삭제하기
+http://localhost:8081/dwitter
+
