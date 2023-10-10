@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News</title>
+  </head>
+  <body>
+    <h1>헤드라인 뉴스</h1>
+    <hr />
+    <div style="text-align: right">
+      <button type="button" id="btnReg" onclick="toggleBtn()" style="margin-bottom: 10px">뉴스등록</button>
+    </div>
+    <form
+      name="regForm"
+      action="/news/register"
+      method="post"
+      id="regForm"
+      style="border: 2px solid #ff8080; padding: 10px; box-sizing: border-box; display: none"
+    >
+      <input name="imgURL_" id="imgURL_" placeholder="이미지 URL" style="width: 40%" />
+      <input name="title_" id="title_" placeholder="제목" style="width: 40%" />
+      <textarea name="content_" id="content_" placeholder="내용" style="width: 60%"></textarea>
+      <button type="submit" onclick="">등록하기</button>
+      <button type="reset" onclick="">등록취소</button>
+    </form>
+    <ul>
+      <% newsList.forEach(news=> { %>
+      <li style="list-style: none; height: 150px; border-bottom: 1px solid #000">
+        <img src="<%= news.imgURL_ %>" width="150px" style="float: left; padding-right: 10px" />
+        <h3><a href="/news/<%= news.nid %>"><%= news.title_ %></a></h3>
+        <p style="width: 75%; height: 45px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap">
+          <%= news.content_ %>
+        </p>
+      </li>
+      <% })%>
+    </ul>
+  </body>
+  <script>
+    function toggleBtn() {
+      const updateForm = document.querySelector('#regForm');
+      const contentTitle = document.querySelector('#title_');
+      const contentContent = document.querySelector('#content_');
+      const imgURL = document.querySelector('#imgURL_');
+      const display = updateForm.style.display;
+
+      if (display == 'none') {
+        updateForm.style.display = 'block';
+        imgURL.focus();
+      } else {
+        updateForm.style.display = 'none';
+        imgURL.value = '';
+        contentTitle.value = '';
+        contentContent.value = '';
+      }
+    }
+  </script>
+</html>

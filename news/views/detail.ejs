@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1><%= newsContent.title_ %></h1>
+    <p style="text-align: right">
+      <a href="/news"><button type="button">리스트</button></a>
+    </p>
+    <div style="text-align: center">
+      <img src="<%= newsContent.imgURL_ %>" style="padding-right: 10px" />
+      <p><%= newsContent.content_ %></p>
+    </div>
+    <%- include('reply') %>
+  </body>
+</html>

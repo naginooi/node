@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>댓글</p>
+    <hr />
+    <form name="commentForm" id="commentForm" action="" method="post">
+      <textarea id="replyContent" name="replyContent" style="width: 80%"></textarea><br />
+      <button type="button" id="btnRegReply" onclick="replyClick(<%= newsContent.nid %>)">등록완료</button>
+    </form>
+    <div>
+      <ul class="replyContentList"></ul>
+    </div>
+  </body>
+  <script>
+    const replyContent = document.querySelector('#replyContent');
+    const replyContentList = document.querySelector('.replyContentList');
+    replyList(<%= newsContent.nid %>)
+    function replyList(nid) {
+      //맨처음 호출되는 리스트 출력함수
+      fetch('/reply/'+nid)
+      .then(res=>res.json())
+      .then((rList) => {
+          const output = `${rList.map((reply) => `<li style="list-style:none">${reply.replyContent}</li>`).join('\n')}`;
+          replyContentList.innerHTML = output;
+        })
+      .catch()
+    }
+    function replyClick(nid) {
+      fetch('/reply', {
+        method: 'post',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ nid: '<%= newsContent.nid %>', replyContent: replyContent.value }),
+      })
+        .then((res) => {
+          if(res.status==201) window.location.reload()
+        })
+        .catch();
+    }
+  </script>
+</html>
